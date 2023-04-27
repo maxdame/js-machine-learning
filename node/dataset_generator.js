@@ -5,7 +5,7 @@ const draw = require("../common/draw.js");
 const { createCanvas } = require("canvas");
 
 // Create a new canvas with a width of 800 pixels and a height of 800 pixels
-const canvas = createCanvas(800, 800);
+const canvas = createCanvas(400, 400);
 
 // Get the 2D rendering context for the canvas
 const ctx = canvas.getContext("2d");
@@ -89,13 +89,17 @@ fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
 
 // Define a function called generateImageFile with parameters outFile and paths
 function generateImageFile(outFile, paths) {
-  ctx.fillStyle = "f6f6f6";
-
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // Set background color
+  ctx.fillStyle = "white";
+
+  // Fill canvas with defined background color
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   // Draw the paths on the canvas using the draw.paths method
-  draw.paths = (ctx, paths);
+  draw.paths(ctx, paths);
 
   // Convert the canvas to a PNG image buffer
   const buffer = canvas.toBuffer("image/png");

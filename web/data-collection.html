@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.8, user-scalable=0" />
+    <title>Data Collection - JS Machine Learning</title>
+    <link rel="stylesheet" href="sketchPad.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <svg id="title" viewBox="0 0 960 300">
+        <symbol id="s-text">
+          <text text-anchor="middle" x="50%" y="80%">DRAW.it</text>
+        </symbol>
+        <g class="g-ants">
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+          <use xlink:href="#s-text" class="text-copy"></use>
+        </g>
+      </svg>
+      <div>
+        <input id="user" type="text" placeholder="Enter your name" />
+        <span id="instructions"></span>
+        <button id="advanceBtn" onclick="start()">START</button>
+      </div>
+      <br />
+      <div id="sketchPadContainer" style="visibility: hidden"></div>
+    </div>
+    <script src="../common/draw.js"></script>
+    <script src="js/sketchPad.js"></script>
+    <!-- Initializes variables and data structures needed for the sketch pad -->
+    <script>
+      // Initialize index and array of labels
+      let index = 0;
+      const labels = ["car", "fish", "house", "tree", "bicycle", "guitar", "pencil", "clock"];
+
+      // Initialize data object with name, session, and drawings fields
+      const data = {
+        username: null,
+        session: new Date().getTime(),
+        drawings: {},
+      };
+
+      // Initialize SketchPad object using sketchPadContainer
+      const sketchPad = new SketchPad(sketchPadContainer);
+
+      // Function called when user clicks the "Start" button
+      function start() {
+        // Check if user has entered a name, show alert if not
+        if (user.value === "") {
+          alert("Please enter your name");
+          return;
+        }
+        // Update data object with user's name
+        data.username = user.value;
+
+        const titlePosition = document.getElementById("content");
+        titlePosition.style.top = "45%";
+
+        // Hide user input field and show sketch pad container
+        user.style.display = "none";
+        sketchPadContainer.style.visibility = "visible";
+
+        // Get current label from array and display it as instruction
+        const label = labels[index];
+        instructions.innerHTML = "Please draw a " + label;
+
+        // Update advance button text
+        advanceBtn.innerHTML = "NEXT";
+
+        // Update advance button on click function
+        advanceBtn.onclick = next;
+      }
+
+
+      // Function to iterate through labels and display the label in instructions
+      // Once all labels have been drawn, prompt the user to save file
+      function next() {
+        if (sketchPad.paths.length === 0) {
+          alert("You must draw something before proceeding.");
+          return;
+        }
+
+        const label = labels[index];
+        data.drawings[label] = sketchPad.paths;
+        sketchPad.reset();
+        index++;
+        if (index < labels.length) {
+          const nextLabel = labels[index];
+          instructions.innerHTML = "Please draw a " + nextLabel;
+        } else {
+          sketchPadContainer.style.visibility = "hidden";
+          instructions.innerHTML = "Thank you for submitting your drawings!";
+          advanceBtn.innerHTML = "SAVE";
+          advanceBtn.onclick = save;
+        }
+      }
+
+      function save() {
+        advanceBtn.style.display = "none";
+        instructions.innerHTML = "Take your downloaded file and place it alongside the others in the dataset.";
+
+        const element = document.createElement("a");
+        element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(data)));
+
+        const fileName = data.session + ".json";
+        element.setAttribute("download", fileName);
+
+        element.style.display = "none";
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+      }
+    </script>
+  </body>
+</html>

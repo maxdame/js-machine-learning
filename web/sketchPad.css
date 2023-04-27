@@ -1,0 +1,173 @@
+body {
+    font-family: "Inter";
+    background-color: #111111;
+    color: #f6f6f6;
+    overscroll-behavior: none;
+}
+
+#content {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+h1 {
+    font-size: 150px;
+    margin-bottom: 0;
+}
+
+h1:hover {
+    font-size: 150px;
+    margin-bottom: 0;
+    color: #2e3ee7;
+}
+
+#instructions,
+#user {
+    font-size: 25px;
+}
+
+button {
+    font-size: 25px;
+    width: 100px;
+    text-align: center;
+}
+
+#advanceBtn {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    color: #111111;
+}
+
+#advanceBtn:hover {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #2e3ee7;
+    color: #f6f6f6;
+}
+
+#controls {
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+button:disabled {
+    border: none;
+    border-radius: 5px;
+}
+
+button:enabled {
+    border: none;
+    border-radius: 5px;
+}
+
+button:enabled:hover {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #2e3ee7;
+    color: #f6f6f6;
+}
+
+svg {
+    display: block;
+    font: 10.5em 'Montserrat';
+    width: 960px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.text-copy {
+    fill: none;
+    stroke: #f6f6f6;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 10.5s infinite linear;
+}
+
+.text-copy:nth-child(1) {
+    stroke: #4D163D;
+    stroke-width: 1px;
+    animation-delay: -1s;
+}
+
+.text-copy:nth-child(2) {
+    stroke: #840037;
+    stroke-width: 1px;
+    animation-delay: -2s;
+}
+
+.text-copy:nth-child(3) {
+    stroke: #BD0034;
+    stroke-width: 1.25px;
+    animation-delay: -3s;
+}
+
+.text-copy:nth-child(4) {
+    stroke: #BD0034;
+    stroke-width: 1.5px;
+    animation-delay: -4s;
+}
+
+.text-copy:nth-child(5) {
+    stroke: #BD0034;
+    stroke-width: 1.75px;
+    animation-delay: -5s;
+}
+
+.text-copy:nth-child(6) {
+    stroke: #BD0034;
+    stroke-width: 2px;
+    animation-delay: -6s;
+}
+
+.text-copy:nth-child(7) {
+    stroke: #BD0034;
+    stroke-width: 2.25px;
+    animation-delay: -7s;
+}
+
+.text-copy:nth-child(8) {
+    stroke: #BD0034;
+    stroke-width: 2.5px;
+    animation-delay: -8s;
+}
+
+
+.text-copy:nth-child(9) {
+    stroke: #000000;
+    stroke-width: 2px;
+    animation-delay: -10s;
+}
+
+.text-copy:nth-child(10) {
+    stroke: #343433;
+    stroke-width: 3.5px;
+    animation-delay: -10.1s;
+}
+
+
+.text-copy:nth-child(11) {
+    stroke: #f6f6f6;
+    animation-delay: -10.25s;
+}
+
+.text-copy:nth-child(12) {
+    stroke: #FDB731;
+    animation-delay: -10.5s;
+}
+
+
+
+@keyframes stroke-offset {
+    100% {
+        stroke-dashoffset: -35%;
+    }
+}

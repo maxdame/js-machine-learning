@@ -71,7 +71,7 @@
         data.username = user.value;
 
         const titlePosition = document.getElementById("content");
-        titlePosition.style.top = "45%";
+        titlePosition.style.marginTop = "2%";
 
         // Hide user input field and show sketch pad container
         user.style.display = "none";
@@ -87,7 +87,6 @@
         // Update advance button on click function
         advanceBtn.onclick = next;
       }
-
 
       // Function to iterate through labels and display the label in instructions
       // Once all labels have been drawn, prompt the user to save file
@@ -105,6 +104,8 @@
           const nextLabel = labels[index];
           instructions.innerHTML = "Please draw a " + nextLabel;
         } else {
+          const titlePosition = document.getElementById("content");
+          titlePosition.style.margin = "25vh auto";
           sketchPadContainer.style.visibility = "hidden";
           instructions.innerHTML = "Thank you for submitting your drawings!";
           advanceBtn.innerHTML = "SAVE";

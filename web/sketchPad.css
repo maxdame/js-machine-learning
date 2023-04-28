@@ -6,11 +6,16 @@ body {
 }
 
 #content {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 800px;
+    margin: 25vh auto;
+    /* position: absolute;
     top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
+    text-align: center; */
 }
 
 h1 {
@@ -77,10 +82,10 @@ button:enabled:hover {
 
 svg {
     display: block;
-    font: 10.5em 'Montserrat';
-    width: 960px;
-    height: 300px;
-    margin: 0 auto;
+    font: 250px 'Montserrat';
+    width: 100%;
+    height: auto;
+    max-width: 960px;
 }
 
 .text-copy {

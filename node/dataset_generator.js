@@ -1,6 +1,12 @@
 // Import the draw module from a file path
 const draw = require("../common/draw.js");
 
+// Import the constants module from a file path
+const constants = require("../common/constants.js");
+
+// Import the utils module from a file path
+const utils = require("../common/utils.js");
+
 // Import the createCanvas function from the canvas module
 const { createCanvas } = require("canvas");
 
@@ -9,17 +15,6 @@ const canvas = createCanvas(400, 400);
 
 // Get the 2D rendering context for the canvas
 const ctx = canvas.getContext("2d");
-
-// Define an object called constants that will hold constant values
-const constants = {};
-
-// Define properties on the constants object (file pathways)
-constants.DATA_DIR = "../data";
-constants.RAW_DIR = constants.DATA_DIR + "/raw";
-constants.DATASET_DIR = constants.DATA_DIR + "/dataset";
-constants.JSON_DIR = constants.DATASET_DIR + "/json";
-constants.IMG_DIR = constants.DATASET_DIR + "/img";
-constants.SAMPLES = constants.DATASET_DIR + "/samples.json";
 
 // Import the built-in Node.js fs module for interacting with the file system
 const fs = require("fs");
@@ -78,6 +73,8 @@ fileNames.forEach((fn) => {
 
     // Generate a PNG image file from the drawings[label] object and save it with the name "id.png" in the IMG_DIR directory
     generateImageFile(constants.IMG_DIR + "/" + id + ".png", paths);
+
+    utils.printProgress(id, fileNames.length * 8);
 
     // Increment the id counter
     id++;

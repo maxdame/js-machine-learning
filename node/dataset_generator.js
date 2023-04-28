@@ -84,6 +84,9 @@ fileNames.forEach((fn) => {
 // Write the samples array as a JSON file with the name "samples.json" in the DATASET_DIR directory
 fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
 
+
+fs.writeFileSync(constants.SAMPLES_JS, "const samples =" + JSON.stringify(samples) + ";");
+
 // Define a function called generateImageFile with parameters outFile and paths
 function generateImageFile(outFile, paths) {
   // Clear the canvas

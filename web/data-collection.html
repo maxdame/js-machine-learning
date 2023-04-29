@@ -70,6 +70,7 @@
         // Update data object with user's name
         data.username = user.value;
 
+        // Update top margin to better align content
         const titlePosition = document.getElementById("content");
         titlePosition.style.marginTop = "2%";
 
@@ -91,6 +92,7 @@
       // Function to iterate through labels and display the label in instructions
       // Once all labels have been drawn, prompt the user to save file
       function next() {
+        // Check if user has drawn anything, show alert if not
         if (sketchPad.paths.length === 0) {
           alert("You must draw something before proceeding.");
           return;
@@ -100,6 +102,7 @@
         data.drawings[label] = sketchPad.paths;
         sketchPad.reset();
         index++;
+        // Check if all labels have been drawn, hide sketch pad container and show final message
         if (index < labels.length) {
           const nextLabel = labels[index];
           instructions.innerHTML = "Please draw a " + nextLabel;
@@ -114,8 +117,9 @@
       }
 
       function save() {
+        // Hide advance button and update instructions
         advanceBtn.style.display = "none";
-        instructions.innerHTML = "Take your downloaded file and place it alongside the others in the dataset.";
+        instructions.innerHTML = "Place your downloaded file in the folder linked below (no link yet).";
 
         const element = document.createElement("a");
         element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(data)));
@@ -123,6 +127,7 @@
         const fileName = data.session + ".json";
         element.setAttribute("download", fileName);
 
+        // Hide the download link and trigger the download
         element.style.display = "none";
         document.body.appendChild(element);
         element.click();

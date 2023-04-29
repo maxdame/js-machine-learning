@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Viewer</title>
+    <link rel="stylesheet" href="sketchPad.css" />
+  </head>
+  <body>
+    <h1>Date Viewer</h1>
+    <div id="container"></div>
+    <script src="../common/js_objects/samples.js"></script>
+    <script src="../common/constants.js"></script>
+    <script src="../common/utils.js"></script>
+    <script src="js/display.js"></script>
+    <script>
+      // Group the 'samples' array of objects by the 'user_id' key using the 'groupBy' function defined in 'utils'
+      const groups = utils.groupBy(samples, "user_id");
+      // Iterate over each group of objects
+      for (let student_id in groups) {
+        // Get the array of objects for the current group
+        const samples = groups[user_id];
+        // Get the student name from the first object in the array
+        const studentName = samples[0].student_name;
+        // Call the 'createRow' function with the container element, student name, and array of objects for the current group
+        createRow(container, studentName, samples);
+      }
+    </script>
+  </body>
+</html>

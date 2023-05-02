@@ -37,6 +37,7 @@
       <div>
         <input id="user" type="text" placeholder="Enter your name" />
         <span id="instructions"></span>
+        <!-- <span id="viewer"></span> -->
         <button id="advanceBtn" onclick="start()">START</button>
       </div>
       <br />
@@ -119,7 +120,17 @@
       function save() {
         // Hide advance button and update instructions
         advanceBtn.style.display = "none";
+
         instructions.innerHTML = "Place your downloaded file in the folder linked below (no link yet).";
+
+        const content = document.getElementById("content");
+        const goToViewer = document.createElement("a");
+        goToViewer.innerText = "Click to view the current collected data";
+        goToViewer.setAttribute("href", "viewer.html");
+        goToViewer.style.position = "absolute";
+        goToViewer.style.marginTop = "300px";
+        goToViewer.style.marginLeft = "250px";
+        content.appendChild(goToViewer);
 
         const element = document.createElement("a");
         element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(data)));

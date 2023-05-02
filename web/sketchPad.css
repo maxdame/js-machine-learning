@@ -30,7 +30,8 @@ h1:hover {
 }
 
 #instructions,
-#user {
+#user,
+#viewer {
     font-size: 25px;
 }
 

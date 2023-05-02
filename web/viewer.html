@@ -37,7 +37,7 @@
         createRow(container, studentName, samples);
       }
 
-      // Define options for the chart's design, including width, height, axis titles, and legend position
+      // Define options to design chart template
       const options = {
         width: 400,
         height: 400,
@@ -46,22 +46,16 @@
         legend: { position: "none" },
       };
 
-      // Load the most recent version of the Google Charts library
+      // Load the most recent version of google chart
       google.charts.load("current", { packages: ["corechart"] });
 
-      // When the Google Charts library is loaded, execute the following code
+      
       google.charts.setOnLoadCallback(() => {
-        // Create a new DataTable object to hold the chart data
         const data = new google.visualization.DataTable();
-
-        // Add two columns to the DataTable, using the feature names as column titles
         data.addColumn("number", featureNames[0]);
         data.addColumn("number", featureNames[1]);
-
-        // Add rows to the DataTable, using the feature values from each sample
         data.addRows(samples.map((s) => s.point));
 
-        // Create a new ScatterChart object and draw it in the specified container with the given options
         const chart = new google.visualization.ScatterChart(chartContainer);
         chart.draw(data, options);
       });

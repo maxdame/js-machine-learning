@@ -1,6 +1,9 @@
 // Define an empty object named "utils"
 const utils = {};
 
+// Defines an array "banned" user ids, which is used to blur inapproriate submissions
+utils.flaggedUsers = [];
+
 // Define a method "formatPercent" on the "utils" object that takes a number "n" as input and returns the percentage value with two decimal places
 utils.formatPercent = (n) => {
   return (n * 100).toFixed(2) + "%";

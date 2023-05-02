@@ -33,9 +33,7 @@ draw.paths = (ctx, paths, color = "#111111") => {
   }
 };
 
-// Check whether the "module" variable is defined or not using the "typeof" operator
+// If the "module" object exists (i.e., the code is running in a Node.js environment), export the "draw" object
 if (typeof module !== "undefined") {
-  // If the "module" variable is defined, this line exports the "draw" function using the "module.exports" property
-  // This makes the "draw" function available for other modules to use
   module.exports = draw;
 }

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Viewer</title>
-    <link rel="stylesheet" href="sketchPad.css" />
+    <link rel="stylesheet" href="display.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
@@ -15,16 +15,20 @@
   </head>
   <body>
     <h1>Data Viewer</h1>
+    <div id="chartContainer"></div>
     <div id="container"></div>
-    <script src="../common/js_objects/samples.js"></script>
+    <script src="../common/js_objects/features.js"></script>
     <script src="../common/constants.js"></script>
     <script src="../common/utils.js"></script>
     <script src="js/display.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
+      const { samples, featureNames } = features;
       // Group the 'samples' array of objects by the 'user_id' key using the 'groupBy' function defined in 'utils'
       const groups = utils.groupBy(samples, "user_id");
+      console.log(groups);
       // Iterate over each group of objects
-      for (let student_id in groups) {
+      for (let user_id in groups) {
         // Get the array of objects for the current group
         const samples = groups[user_id];
         // Get the student name from the first object in the array
@@ -32,6 +36,35 @@
         // Call the 'createRow' function with the container element, student name, and array of objects for the current group
         createRow(container, studentName, samples);
       }
+
+      // Define options for the chart's design, including width, height, axis titles, and legend position
+      const options = {
+        width: 400,
+        height: 400,
+        hAxis: { title: featureNames[0] },
+        vAxis: { title: featureNames[1] },
+        legend: { position: "none" },
+      };
+
+      // Load the most recent version of the Google Charts library
+      google.charts.load("current", { packages: ["corechart"] });
+
+      // When the Google Charts library is loaded, execute the following code
+      google.charts.setOnLoadCallback(() => {
+        // Create a new DataTable object to hold the chart data
+        const data = new google.visualization.DataTable();
+
+        // Add two columns to the DataTable, using the feature names as column titles
+        data.addColumn("number", featureNames[0]);
+        data.addColumn("number", featureNames[1]);
+
+        // Add rows to the DataTable, using the feature values from each sample
+        data.addRows(samples.map((s) => s.point));
+
+        // Create a new ScatterChart object and draw it in the specified container with the given options
+        const chart = new google.visualization.ScatterChart(chartContainer);
+        chart.draw(data, options);
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,36 @@
+body {
+    font-family: "Inter";
+    background-color: #111111;
+    color: #f6f6f6;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+
+}
+
+.rowLabel {
+    flex: 2 1 0;
+    width: 15%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.thumb {
+    width: 100%;
+}
+
+.sampleContainer {
+    flex: 1 1 0;
+    background-color: #2e3ee7;
+    text-align: center;
+    border-radius: 10px;
+    margin: 1px;
+    overflow: hidden;
+}
+
+.blur {
+    filter: blur(10px);
+}

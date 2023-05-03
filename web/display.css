@@ -34,3 +34,19 @@ body {
 .blur {
     filter: blur(10px);
 }
+
+.emphasize {
+    background-color: yellow;
+    color: #111111;
+}
+
+#container {
+    width: calc(100% - 800px)
+}
+
+#chartContainer {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%)
+}

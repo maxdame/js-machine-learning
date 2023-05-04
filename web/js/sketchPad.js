@@ -1,5 +1,5 @@
 class SketchPad {
-  constructor(container, size = 800) {
+  constructor(container, onUpdate = null, size = 400) {
     // Create a new canvas element with the specified dimensions and style
     this.canvas = document.createElement("canvas");
     this.canvas.width = size;
@@ -48,6 +48,8 @@ class SketchPad {
 
     // Call the redraw method to draw the canvas
     this.#redraw();
+
+    this.onUpdate = onUpdate;
 
     this.reset();
 
@@ -143,6 +145,16 @@ class SketchPad {
       this.clearBtn.disabled = false;
     } else {
       this.clearBtn.disabled = true;
+    }
+    if (this.onUpdate) {
+      this.onUpdate(this.paths);
+    }
+    this.triggerUpdate();
+  }
+
+  triggerUpdate() {
+    if (this.onUpdate) {
+      this.onUpdate(this.paths);
     }
   }
 

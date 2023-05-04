@@ -50,3 +50,27 @@ body {
     top: 50%;
     transform: translate(0, -50%)
 }
+
+#inputContainer {
+    position: fixed;
+    right: 1350px;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+    margin: 10px;
+}
+
+#controlPanel {
+    position: fixed;
+    right: 0;
+    top: 10%;
+    width: 800px;
+    text-align: center;
+    padding: 10px;
+}
+
+#predictedLabelContainer {
+    color: #f6f6f6;
+    font-size: 30px;
+    position: relative;
+}

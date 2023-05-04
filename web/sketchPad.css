@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 800px;
+    width: 400px;
     margin: 25vh auto;
     /* position: absolute;
     top: 75%;
@@ -19,12 +19,12 @@ body {
 }
 
 h1 {
-    font-size: 150px;
+    font-size: 50px;
     margin-bottom: 0;
 }
 
 h1:hover {
-    font-size: 150px;
+    font-size: 50px;
     margin-bottom: 0;
     color: #2e3ee7;
 }
@@ -32,7 +32,7 @@ h1:hover {
 #instructions,
 #user,
 #viewer {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 button {
@@ -41,7 +41,12 @@ button {
     text-align: center;
 }
 
+input {
+    margin-top: 45%;
+}
+
 #advanceBtn {
+    margin-top: 5%;
     cursor: pointer;
     border: none;
     border-radius: 5px;
@@ -87,6 +92,7 @@ svg {
     width: 100%;
     height: auto;
     max-width: 960px;
+    scale: 4;
 }
 
 .text-copy {

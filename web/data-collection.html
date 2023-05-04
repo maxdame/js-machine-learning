@@ -53,8 +53,8 @@
 
       // Initialize data object with name, session, and drawings fields
       const data = {
-        username: null,
         session: new Date().getTime(),
+        student: null,
         drawings: {},
       };
 
@@ -69,11 +69,14 @@
           return;
         }
         // Update data object with user's name
-        data.username = user.value;
+        data.student = user.value;
 
         // Update top margin to better align content
         const titlePosition = document.getElementById("content");
-        titlePosition.style.marginTop = "2%";
+        titlePosition.style.marginTop = "10%";
+
+        const title = document.getElementById("title");
+        title.style.scale = 1.5;
 
         // Hide user input field and show sketch pad container
         user.style.display = "none";
@@ -128,8 +131,8 @@
         goToViewer.innerText = "Click to view the current collected data";
         goToViewer.setAttribute("href", "viewer.html");
         goToViewer.style.position = "absolute";
-        goToViewer.style.marginTop = "300px";
-        goToViewer.style.marginLeft = "250px";
+        goToViewer.style.marginTop = "180px";
+        goToViewer.style.marginLeft = "50px";
         content.appendChild(goToViewer);
 
         const element = document.createElement("a");

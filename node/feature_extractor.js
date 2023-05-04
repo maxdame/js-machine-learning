@@ -1,6 +1,6 @@
 // Require the `constants` and `features` modules from the "../common" directory
 const constants = require("../common/constants.js");
-const features = require("../common/features.js");
+const featureFunctions = require("../common/featureFunctions.js");
 
 // Import the built-in Node.js fs module for interacting with the file system
 const fs = require("fs");
@@ -15,12 +15,15 @@ for (const sample of samples) {
   // Read the JSON file for the current sample's ID and parse it into an array of `paths`
   const paths = JSON.parse(fs.readFileSync(constants.JSON_DIR + "/" + sample.id + ".json"));
 
+  const functions = featureFunctions.inUse.map((f) => f.function);
+  sample.point = functions.map((f) => f(paths));
+
   // Add a `point` property to the current sample, which is an array containing the results of the `features.getPathCount` and `features.getPointCount` methods
-  sample.point = [features.getPathCount(paths), features.getPointCount(paths)];
+  // sample.point = [featureFunctions.getPathCount(paths), featureFunctions.getPointCount(paths)];
 }
 
 // Define an array of feature names
-const featureNames = ["Path Count", "Point Count"];
+const featureNames = featureFunctions.inUse.map((f) => f.name);
 
 // Write the extracted features to a JSON file
 fs.writeFileSync(
@@ -44,4 +47,3 @@ fs.writeFileSync(
 );
 
 console.log("COMPLETED");
-

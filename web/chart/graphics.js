@@ -11,7 +11,7 @@ graphics.drawText=(ctx,
    {text,loc,align="center",vAlign="middle",size=10,color="black"})=>{
       ctx.textAlign=align;
       ctx.textBaseline=vAlign;
-      ctx.font="bold "+size+"px Courier";
+      ctx.font="bold "+size+"px Inter";
       ctx.fillStyle=color;
       ctx.fillText(text,...loc);     
 }
@@ -27,7 +27,7 @@ graphics.generateImages=(styles,size=20)=>{
       ctx.beginPath();
       ctx.textAlign="center";
       ctx.textBaseline="middle";
-      ctx.font=size+"px Courier";
+      ctx.font=size+"px Inter";
 
       const colorHueMap={
          red:0,
